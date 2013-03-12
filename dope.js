@@ -2,6 +2,7 @@
   var dope = function(uri, callback, timeout) {
     typeof (uri) === 'string' ? uri = [uri] : uri = uri;
     for (var i in uri) {
+      console.log(uri[i]);
       var el = null;
       var type = uri[i].substr(uri[i].lastIndexOf('.') + 1).toLowerCase();
       switch(type) {
@@ -18,21 +19,21 @@
         default:
           return;
       }
-    }
 
-    if (callback && typeof (callback) === 'function') {
-      el.onreadystatechange = el.onload = function() {
-        if (!this.fired || this.readyState === 'loaded' || this.readyState === 'complete') {
-          this.fired = true;
-          this.onreadystatechange = this.onload = null;
-          setTimeout(function() {
-            callback();
-          }, timeout);
+      if (callback && typeof (callback) === 'function') {
+        el.onreadystatechange = el.onload = function() {
+          if (!this.fired || this.readyState === 'loaded' || this.readyState === 'complete') {
+            this.fired = true;
+            this.onreadystatechange = this.onload = null;
+            setTimeout(function() {
+              callback();
+            }, timeout);
+          }
         }
       }
-    }
 
-    document.getElementsByTagName('head')[0].appendChild(el);
+      document.getElementsByTagName('head')[0].appendChild(el);
+    }
   }
 
   if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
