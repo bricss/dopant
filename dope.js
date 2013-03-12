@@ -1,9 +1,9 @@
 (function() {'use strict';
-  var dope = function(url, callback, timeout) {
+  var dope = function(uri, callback, timeout) {
     typeof (uri) === 'string' ? uri = [uri] : uri = uri;
     for (var i in uri) {
       var el = null;
-      var type = uri[i].substring(uri[i].lastIndexOf('.') + 1).toLowerCase();
+      var type = uri[i].substr(uri[i].lastIndexOf('.') + 1).toLowerCase();
       switch(type) {
         case 'js':
           el = document.createElement('script');
@@ -34,6 +34,7 @@
 
     document.getElementsByTagName('head')[0].appendChild(el);
   }
+
   if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
     dope(['assets/js/polyfill.js', 'assets/js/augment.js'], function(e) {
       console.log('WOOP!');
