@@ -2,7 +2,6 @@
   var dope = function(uri, callback, timeout) {
     typeof (uri) === 'string' ? uri = [uri] : uri = uri;
     for (var i in uri) {
-      console.log(uri[i]);
       var el = null;
       var type = uri[i].substr(uri[i].lastIndexOf('.') + 1).toLowerCase();
       switch(type) {
