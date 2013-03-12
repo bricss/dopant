@@ -1,20 +1,23 @@
 (function() {'use strict';
   var dope = function(url, callback, timeout) {
-    var el;
-    var type = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-    switch(type) {
-      case 'js':
-        el = document.createElement('script');
-        el.async = true;
-        el.src = url;
-        break;
-      case 'css':
-        el = document.createElement('link');
-        el.href = url;
-        el.rel = 'stylesheet';
-        break;
-      default:
-        return;
+    typeof (uri) === 'string' ? uri = [uri] : uri = uri;
+    for (var i in uri) {
+      var el = null;
+      var type = uri[i].substring(uri[i].lastIndexOf('.') + 1).toLowerCase();
+      switch(type) {
+        case 'js':
+          el = document.createElement('script');
+          el.async = true;
+          el.src = uri[i];
+          break;
+        case 'css':
+          el = document.createElement('link');
+          el.href = uri[i];
+          el.rel = 'stylesheet';
+          break;
+        default:
+          return;
+      }
     }
 
     if (callback && typeof (callback) === 'function') {
@@ -32,10 +35,9 @@
     document.getElementsByTagName('head')[0].appendChild(el);
   }
   if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
-    dope('assets/js/polyfill.js', function(e) {
+    dope(['assets/js/polyfill.js', 'assets/js/augment.js'], function(e) {
       console.log('WOOP!');
     });
-    dope('assets/js/augment.js');
   }
   dope('assets/css/layout.css', function(e) {
     console.log('WOOP!');
