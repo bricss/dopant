@@ -25,18 +25,14 @@
           if (!this.fired || this.readyState === 'loaded' || this.readyState === 'complete') {
             this.fired = true;
             this.onreadystatechange = this.onload = null;
-            queue += 1;
+            (++queue === deps.length) &&  setTimeout(function() {
+            callback();
+      }, timeout);
           }
         }
       }
 
       document.getElementsByTagName('head')[0].appendChild(el);
-    }
-
-    if (queue == deps.lenght) {
-      setTimeout(function() {
-        callback();
-      }, timeout);
     }
 
   }
