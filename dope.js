@@ -1,19 +1,19 @@
 (function() {'use strict';
-  var dope = function(uri, callback, timeout) {
+  var dope = function(deps, callback, timeout) {
     var queue = null;
-    typeof (uri) === 'string' ? uri = [uri] : uri = uri;
-    for (var i in uri) {
+    typeof (deps) === 'string' ? deps = [deps] : deps = deps;
+    for (var i in deps) {
       var el = null;
-      var type = uri[i].substr(uri[i].lastIndexOf('.') + 1).toLowerCase();
+      var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
       switch(type) {
         case 'js':
           el = document.createElement('script');
           el.async = true;
-          el.src = uri[i];
+          el.src = deps[i];
           break;
         case 'css':
           el = document.createElement('link');
-          el.href = uri[i];
+          el.href = deps[i];
           el.rel = 'stylesheet';
           break;
         default:
@@ -33,12 +33,10 @@
       document.getElementsByTagName('head')[0].appendChild(el);
     }
 
-    if (callback && typeof (callback) === 'function') {
-      if (queue == uri.lenght) {
-        setTimeout(function() {
-          callback();
-        }, timeout);
-      }
+    if (queue == deps.lenght) {
+      setTimeout(function() {
+        callback();
+      }, timeout);
     }
 
   }
