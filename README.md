@@ -1,4 +1,4 @@
 dope.js
 =======
 
-The lightweight async conditional resource loader
+The aerogel-weight async conditional resource loader
