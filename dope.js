@@ -25,9 +25,9 @@
           if (!this.fired || this.readyState === 'loaded' || this.readyState === 'complete') {
             this.fired = true;
             this.onreadystatechange = this.onload = null;
-            (++queue === deps.length) &&  setTimeout(function() {
-            callback();
-      }, timeout);
+            (++queue === deps.length) && setTimeout(function() {
+              callback();
+            }, timeout);
           }
         }
       }
