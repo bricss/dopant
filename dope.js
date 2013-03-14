@@ -1,10 +1,15 @@
 (function() {'use strict';
-  var dope = function(deps, callback, timeout) {
+  var dope = function(deps, callback, delay, timeout) {
+    var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
+    var list = [];
     var queue = null;
-    typeof (deps) === 'string' ? deps = [deps] : deps = deps;
+    // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
+    // deps instanceof Array ? deps = deps : deps = [deps];
+    deps.constructor === String ? deps = [deps] : deps = deps;
     for (var i in deps) {
       var el = null;
       var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
+      queue = deps.length;
       switch(type) {
         case 'js':
           el = document.createElement('script');
@@ -21,18 +26,32 @@
       }
 
       if (callback && typeof (callback) === 'function') {
-        el.onreadystatechange = el.onload = function() {
-          if (!this.fired || this.readyState === 'loaded' || this.readyState === 'complete') {
-            this.fired = true;
+        el.onreadystatechange = el.onload = function(e) {
+          if (e && e.type === 'load' || this.readyState === 'loaded' || this.readyState === 'complete') {
             this.onreadystatechange = this.onload = null;
-            (++queue === deps.length) && setTimeout(function() {
+            (!--queue) && setTimeout(function() {
               callback();
-            }, timeout);
+            }, delay);
           }
         }
       }
 
-      document.getElementsByTagName('head')[0].appendChild(el);
+      list.push(head.appendChild(el));
+    }
+
+    function abort() {
+      for (var i = 0; i < list.length; i++) {
+        head.removeChild(list[i]);
+        delete list[i];
+      }
+    }
+
+    if (timeout) {
+      setTimeout(function() {
+        if (!queue || queue > 0) {
+          abort();
+        }
+      }, timeout);
     }
 
   }
