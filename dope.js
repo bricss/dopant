@@ -26,7 +26,6 @@
 
       if (callback && typeof (callback) === 'function') {
         el.onreadystatechange = el.onload = function(e) {
-          console.log(this.status);
           if (e && e.type === 'load' || this.readyState === 'loaded' || this.readyState === 'complete') {
             this.onreadystatechange = this.onload = null;
             (!--queue) && setTimeout(function() {
