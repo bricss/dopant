@@ -60,6 +60,6 @@
     });
   }
   dope('assets/css/layout.css', function(e) {
-    console.log('WOOP!');
-  }, 1000);
+    console.log('WEE!');
+  }, 1000, 5000);
 })();
