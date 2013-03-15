@@ -5,7 +5,7 @@
     var queue = null;
     // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
     // deps instanceof Array ? deps = deps : deps = [deps];
-    deps.constructor === String ? deps = [deps] : deps = deps;  // fastest
+    deps.constructor === String ? deps = [deps] : deps = deps;
     for (var i = queue = deps.length; i--;) {
       var el = null;
       var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
@@ -26,6 +26,7 @@
 
       if (callback && typeof (callback) === 'function') {
         el.onreadystatechange = el.onload = function(e) {
+          console.log(this.status);
           if (e && e.type === 'load' || this.readyState === 'loaded' || this.readyState === 'complete') {
             this.onreadystatechange = this.onload = null;
             (!--queue) && setTimeout(function() {
@@ -33,6 +34,10 @@
             }, delay);
           }
         }
+      }
+
+      el.onerror = function() {
+        console.log('Something went wrong...');
       }
 
       list.push(head.appendChild(el));
