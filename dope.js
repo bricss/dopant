@@ -39,7 +39,7 @@
     }
 
     function abort() {
-      for (var i = 0; i < list.length; i++) {
+      for (var i = list.length; i--;) {
         head.removeChild(list[i]);
         delete list[i];
       }
