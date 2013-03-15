@@ -35,8 +35,8 @@
         }
       }
 
-      el.onerror = function() {
-        console.log('Something went wrong...');
+      el.onerror = function(e) {
+        console.log('Something went wrong:', e);
       }
 
       list.push(head.appendChild(el));
