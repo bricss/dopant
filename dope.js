@@ -6,10 +6,9 @@
     // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
     // deps instanceof Array ? deps = deps : deps = [deps];
     deps.constructor === String ? deps = [deps] : deps = deps;
-    for (var i in deps) {
+    for (var i = queue = deps.length; i--; ) {
       var el = null;
       var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
-      queue = deps.length;
       switch(type) {
         case 'js':
           el = document.createElement('script');
