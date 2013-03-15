@@ -5,7 +5,7 @@
     var queue = null;
     // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
     // deps instanceof Array ? deps = deps : deps = [deps];
-    deps.constructor === String ? deps = [deps] : deps = deps;
+    deps.constructor === String ? deps = [deps] : deps = deps; // fastest
     for (var i = queue = deps.length; i--;) {
       var el = null;
       var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
@@ -65,6 +65,6 @@
     });
   }
   dope('assets/css/layout.css', function(e) {
-    console.log('WEE!');
+    console.log('WOOP!');
   }, 1000, 5000);
 })();
