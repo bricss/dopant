@@ -25,9 +25,9 @@
       }
 
       if (callback && typeof (callback) === 'function') {
-        el.onreadystatechange = el.onload = function(e) {
-          if (e && e.type === 'load' || this.readyState === 'loaded' || this.readyState === 'complete') {
-            this.onreadystatechange = this.onload = null;
+        el.onload = el.onreadystatechange = function(e) {
+          if (e && e.type === 'load' || /loaded|complete/.test(this.readyState) {
+            this.onload = this.onreadystatechange = null;
             (!--queue) && setTimeout(function() {
               callback();
             }, delay);
@@ -63,7 +63,7 @@
       console.log('WOOP!');
     });
   }
-  dope('assets/css/layout.css', function(e) {
+  dope('assets/css/common.js', function(e) {
     console.log('WOOP!');
   }, 1000, 5000);
 })();
