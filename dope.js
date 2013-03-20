@@ -1,5 +1,5 @@
 (function() {'use strict';
-  var dope = function(deps, callback, delay, timeout) {
+  this.dope = function(deps, callback, delay, timeout) {
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var list = [];
     var queue = null;
@@ -58,12 +58,13 @@
     }
 
   }
-  if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
-    dope(['assets/js/polyfill.js', 'assets/js/augment.js'], function(e) {
-      console.log('WOOP!');
-    });
-  }
-  dope('assets/css/common.js', function(e) {
+}).call(this);
+
+if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
+  dope(['assets/js/polyfill.js', 'assets/js/augment.js'], function(e) {
     console.log('WOOP!');
-  }, 1000, 5000);
-})();
+  });
+}
+dope('assets/css/common.js', function(e) {
+  console.log('WOOP!');
+}, 1000, 5000);
