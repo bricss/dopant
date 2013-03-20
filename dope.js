@@ -42,7 +42,7 @@
       list.push(head.appendChild(el));
     }
 
-    function abort() {
+    var refuse = function() {
       for (var i = list.length; i--;) {
         head.removeChild(list[i]);
         delete list[i];
@@ -52,7 +52,7 @@
     if (timeout) {
       setTimeout(function() {
         if (!queue || queue > 0) {
-          abort();
+          refuse();
         }
       }, timeout);
     }
