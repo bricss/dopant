@@ -21,6 +21,7 @@
           el.rel = 'stylesheet';
           break;
         default:
+          console.error(deps[i], type);
           throw 'Unsupported type';
       }
 
@@ -36,7 +37,7 @@
       }
 
       el.onerror = function(e) {
-        console.log('Something went wrong:', e.target);
+        console.error('Something went wrong:', e.target);
         throw 'Target is not defined';
       }
 
