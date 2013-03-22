@@ -73,7 +73,7 @@ if (document.location.href == '//somewhe.re/urn/') {
   }, 1000, 5000);
 }
 
-if (/^.*(urn$)/i.test(window.location.href)) {
+if (/^.*(urn$)/i.test(document.location.href)) {
   dope('assets/js/common.js', function(e) {
     console.log('WOOP!');
   }, 1000, 5000);
