@@ -21,7 +21,7 @@
           el.rel = 'stylesheet';
           break;
         default:
-          return;
+          throw 'Unsupported type';
       }
 
       if (callback && typeof (callback) === 'function') {
@@ -65,12 +65,6 @@ if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
   dope(['assets/js/augment.js', 'assets/js/polyfill.js'], function(e) {
     console.log('WOOP!');
   });
-}
-
-if (window.location.href == 'http://somewhe.re/urn/') {
-  dope('assets/js/common.js', function(e) {
-    console.log('WOOP!');
-  }, 1000, 5000);
 }
 
 if (/^.*(urn$)/i.test(window.location.href)) {
