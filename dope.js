@@ -62,7 +62,7 @@
 }).call(this);
 
 if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
-  dope(['assets/js/polyfill.js', 'assets/js/augment.js'], function(e) {
+  dope(['assets/js/augment.js', 'assets/js/polyfill.js'], function(e) {
     console.log('WOOP!');
   });
 }
