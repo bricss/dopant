@@ -36,7 +36,8 @@
       }
 
       el.onerror = function(e) {
-        console.log('Something went wrong:', e);
+        console.log('Something went wrong:', e.target);
+        throw 'Target is not defined';
       }
 
       list.push(head.appendChild(el));
