@@ -21,7 +21,7 @@
           el.rel = 'stylesheet';
           break;
         default:
-          console.error(deps[i], type);
+          console.error('Something went wrong:', deps[i]);
           throw 'Unsupported type';
       }
 
