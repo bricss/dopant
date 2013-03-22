@@ -67,13 +67,13 @@ if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
   });
 }
 
-if (document.location.href == '//somewhe.re/urn/') {
+if (window.location.href == '//somewhe.re/urn/') {
   dope('assets/js/common.js', function(e) {
     console.log('WOOP!');
   }, 1000, 5000);
 }
 
-if (/^.*(urn$)/i.test(document.location.href)) {
+if (/^.*(urn$)/i.test(window.location.href)) {
   dope('assets/js/common.js', function(e) {
     console.log('WOOP!');
   }, 1000, 5000);
