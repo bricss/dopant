@@ -11,12 +11,6 @@ if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
   });
 }
 
-if (window.location.href == 'http://somewhe.re/urn/') {
-  dope('assets/js/common.js', function(e) {
-    console.log('WOOP!');
-  }, 1000, 5000);
-}
-
 if (/^.*(urn$)/i.test(window.location.href)) {
   dope('assets/js/common.js', function(e) {
     console.log('WOOP!');
