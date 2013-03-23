@@ -37,8 +37,7 @@
       }
 
       el.onerror = function(e) {
-        console.error('Something went wrong:', e.target);
-        throw 'Target is not defined';
+        console.error('Target is not defined:', e.target);
       }
 
       list.push(head.appendChild(el));
@@ -61,19 +60,3 @@
 
   }
 }).call(this);
-
-if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
-  dope(['assets/js/augment.js', 'assets/js/polyfill.js'], function(e) {
-    console.log('WOOP!');
-  });
-}
-
-if (/^.*(urn$)/i.test(window.location.href)) {
-  dope('assets/js/common.js', function(e) {
-    console.log('WOOP!');
-  }, 1000, 5000);
-}
-
-dope('assets/css/common.js', function(e) {
-  console.log('WOOP!');
-}, 1000, 5000);
