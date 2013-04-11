@@ -9,6 +9,7 @@
     deps && deps.constructor !== Array && (deps=[deps]);
     for (var i = queue = deps.length; i--;) {
       var el = null;
+      // var type = /(\.js|\.css)/.exec(deps[i])[0].replace('.', '').toLowerCase();
       var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
       switch(type) {
         case 'js':
