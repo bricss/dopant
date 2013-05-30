@@ -6,7 +6,7 @@
     // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
     // deps instanceof Array ? deps = deps : deps = [deps];
     // deps.constructor === String ? deps = [deps] : deps = deps;
-    deps && deps.constructor !== Array && (deps = [deps]);
+    deps && deps.constructor !== Array && (deps = [deps]); // fastest
     for (var i = queue = deps.length; i--;) {
       var el = null;
       // var type = /(\.js|\.css)/.exec(deps[i])[0].replace('.', '').toLowerCase();
