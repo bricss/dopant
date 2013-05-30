@@ -5,7 +5,7 @@ The aerogel-weight & dead-simple async conditional resource loader.
 
 Usage:
 ~~~ javascript
-if (/(msie|ie) [1-8]\./.test(navigator.userAgent.toLowerCase())) {
+if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
   dope(['//somewhe.re/assets/js/augment.js', '//somewhe.re/assets/js/polyfill.js'], function(e) {
     console.log('WOOP!');
   });
