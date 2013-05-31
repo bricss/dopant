@@ -28,8 +28,8 @@
       }
 
       if (callback && typeof (callback) === 'function') {
-        el.onload = el.onreadystatechange = function(e) {
-          if (e && e.type === 'load' || /loaded|complete/.test(this.readyState)) {
+        el.onload = el.onreadystatechange = function(ev) {
+          if (ev && ev.type === 'load' || /loaded|complete/.test(this.readyState)) {
             this.onload = this.onreadystatechange = null;
             (!--queue) && setTimeout(function() {
               callback();
@@ -38,8 +38,8 @@
         }
       }
 
-      el.onerror = function(e) {
-        console.error('Target is not defined:', e.target);
+      el.onerror = function(ev) {
+        console.error('Target is not defined:', ev.target);
       }
 
       list.push(head.appendChild(el));
