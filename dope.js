@@ -23,7 +23,7 @@
       switch(type) {
         case 'js':
           el = document.createElement('script');
-          el.async = false;
+          el.async = (queue && queue.lenght === 1);
           el.src = deps[i];
           break;
         case 'css':
