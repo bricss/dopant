@@ -1,7 +1,7 @@
 Dope.js
 =======
 
-The aerogel-weight & dead-simple conditional resource loader.
+The aerogel-weight & dead-simple async conditional resource loader.
 
 Usage:
 ~~~ javascript

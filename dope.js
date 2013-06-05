@@ -1,5 +1,5 @@
 /*!
- * Dope.js - The aerogel-weight & dead-simple conditional resource loader.
+ * Dope.js - The aerogel-weight & dead-simple async conditional resource loader.
  * Encoded by Yehor Sergeenko <yehor.sergeenko@gmail.com>
  * Version 1.0
  *
