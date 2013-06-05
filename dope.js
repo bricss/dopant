@@ -1,5 +1,13 @@
+/*!
+ * Dope.js - The aerogel-weight & dead-simple conditional resource loader.
+ * Encoded by Yehor Sergeenko <yehor.sergeenko@gmail.com>
+ * Version 1.0
+ *
+ * Dual licensed under the MIT and BSD-2-clause licenses.
+ * Examples and documentation at: https://github.com/bricss/dope
+ */
 (function() {'use strict';
-  this.dope = function(deps, callback, delay, timeout) {
+  this.dope = function(deps, callback, delay, decay) {
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var list = [];
     var queue = null;
@@ -7,6 +15,7 @@
     // deps instanceof Array ? deps = deps : deps = [deps];
     // deps.constructor === String ? deps = [deps] : deps = deps;
     deps && deps.constructor !== Array && (deps = [deps]); // fastest
+    deps.reverse();
     for (var i = queue = deps.length; i--;) {
       var el = null;
       // var type = /(\.js|\.css)/.exec(deps[i])[0].replace('.', '').toLowerCase();
@@ -14,7 +23,7 @@
       switch(type) {
         case 'js':
           el = document.createElement('script');
-          el.async = true;
+          el.async = false;
           el.src = deps[i];
           break;
         case 'css':
@@ -23,7 +32,7 @@
           el.rel = 'stylesheet';
           break;
         default:
-          console.error('Something went wrong:', deps[i]);
+          console.warn('Something went wrong:', deps[i]);
           throw 'Unsupported type';
       }
 
@@ -39,25 +48,24 @@
       }
 
       el.onerror = function(ev) {
-        console.error('Target is not defined:', ev.target);
+        console.warn('Target is not defined:', ev.target);
       }
 
       list.push(head.appendChild(el));
     }
 
-    var refuse = function() {
+    var waste = function() {
       for (var i = list.length; i--;) {
         head.removeChild(list[i]);
         delete list[i];
       }
     }
-
-    if (timeout) {
+    if (decay) {
       setTimeout(function() {
         if (!queue || queue > 0) {
-          refuse();
+          waste();
         }
-      }, timeout);
+      }, decay);
     }
 
   }
