@@ -14,10 +14,9 @@
     // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
     // deps instanceof Array ? deps = deps : deps = [deps];
     // deps.constructor === String ? deps = [deps] : deps = deps;
-    deps && deps.constructor !== Array && ( deps = [deps]);
-    // fastest
+    deps && deps.constructor !== Array && (deps = [deps]); // fastest
     deps.reverse();
-    for (var i = queue = deps.length; i--; ) {
+    for (var i = queue = deps.length; i--;) {
       var el = null;
       // var type = /(\.js|\.css)/.exec(deps[i])[0].replace('.', '').toLowerCase();
       var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
@@ -56,7 +55,7 @@
     }
 
     var waste = function() {
-      for (var i = list.length; i--; ) {
+      for (var i = list.length; i--;) {
         head.removeChild(list[i]);
         delete list[i];
       }
