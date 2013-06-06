@@ -20,4 +20,10 @@ if (/^.*(urn$)/i.test(window.location.href)) {
 dope('//somewhe.re/assets/css/layout.css', function(ev) {
   console.log('WOOP!');
 }, 1000, 5000);
+
+dope('//somewhe.re/assets/js/core.js', function(ev) {
+  console.log('WOOP!');
+}).dope('//somewhe.re/assets/js/app.js', function(ev) {
+  console.log('WOOP!');
+});
 ~~~
