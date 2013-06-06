@@ -68,5 +68,8 @@
       }, decay);
     }
 
+    return {
+      dope : dope
+    }
   }
 }).call(this);
