@@ -44,12 +44,12 @@
               callback();
             }, delay);
           }
-        }
+        };
       }
 
       el.onerror = function(ev) {
         console.warn('Target is not defined:', ev.target);
-      }
+      };
 
       list.push(head.appendChild(el));
     }
@@ -59,7 +59,7 @@
         head.removeChild(list[i]);
         delete list[i];
       }
-    }
+    };
     if (decay) {
       setTimeout(function() {
         if (!queue || queue > 0) {
@@ -70,6 +70,6 @@
 
     return {
       dope : dope
-    }
-  }
+    };
+  };
 }).call(this);
