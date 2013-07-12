@@ -9,7 +9,7 @@ if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
   (document.body.className += ' ' + 'fallback') || (document.getElementsByTagName('body')[0].className += ' ' + 'fallback');
   dope('//somewhe.re/assets/js/augment.js', function(ev) {
     console.log('WOOP!');
-    dope('//somewhe.re/assets/js/html5shiv.js', function(ev) {
+    dope('//somewhe.re/assets/js/selectivizr.min.js', function(ev) {
       console.log('WOOP!');
     });
   });
