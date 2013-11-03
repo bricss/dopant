@@ -5,7 +5,7 @@ The aerogel-weight & dead-simple resource loader.
 
 Usage:
 ~~~ javascript
-if (/msie [1-8]\./.test(navigator.userAgent.toLowerCase())) {
+if (/msie\s[1-8]\./.test(navigator.userAgent.toLowerCase())) {
   (document.body.className += ' ' + 'fallback') || (document.getElementsByTagName('body')[0].className += ' ' + 'fallback');
   dope('//somewhe.re/assets/js/augment.min.js', function(ev) {
     console.log('WOOP!');
