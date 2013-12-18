@@ -7,15 +7,15 @@
  * Examples and documentation at: https://github.com/bricss/dope
  */
 (function() {'use strict';
-  this.dope = function(deps, callback, delay, decay) {
+  var dope = function(deps, callback, delay, decay) {
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var list = [];
     var queue = null;
     // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
     // deps instanceof Array ? deps = deps : deps = [deps];
     // deps.constructor === String ? deps = [deps] : deps = deps;
-    deps && deps.constructor !== Array && (deps = [deps]); // fastest
-    deps.reverse();
+    (deps && deps.constructor !== Array && (deps = [deps]), deps.reverse());
+    // fastest
     for (var i = queue = deps.length; i--;) {
       var el = null;
       // var type = /(\.js|\.css)/.exec(deps[i])[0].replace('.', '').toLowerCase();
@@ -35,7 +35,6 @@
           console.warn('Something went wrong:', deps[i]);
           throw 'Unsupported type';
       }
-
       if (callback && typeof (callback) === 'function') {
         el.onload = el.onreadystatechange = function(ev) {
           if (ev && ev.type === 'load' || /loaded|complete/.test(this.readyState)) {
@@ -46,14 +45,11 @@
           }
         };
       }
-
       el.onerror = function(ev) {
         console.warn('Target is not defined:', ev.target);
       };
-
       list.push(head.appendChild(el));
     }
-
     var waste = function() {
       for (var i = list.length; i--;) {
         head.removeChild(list[i]);
@@ -67,9 +63,9 @@
         }
       }, decay);
     }
-
     return {
       dope : dope
     };
   };
-}).call(this);
+  window.dope = dope;
+}).call(window);
