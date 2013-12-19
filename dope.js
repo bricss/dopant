@@ -1,7 +1,7 @@
 /*!
  * Dope.js - The aerogel-weight & dead-simple resource loader.
  * Encoded by Yehor Sergeenko <yehor.sergeenko@gmail.com>
- * Version 1.0
+ * Version 1.1
  *
  * Dual licensed under the MIT and BSD-2-clause licenses.
  * Examples and documentation at: https://github.com/bricss/dope
@@ -10,14 +10,9 @@
   var dope = function(deps, callback, delay, decay) {
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var list = [], queue;
-    // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
-    // deps instanceof Array ? deps = deps : deps = [deps];
-    // deps.constructor === String ? deps = [deps] : deps = deps;
     (deps && deps.constructor !== Array && (deps = [deps]), deps.reverse());
     for (var i = queue = deps.length - 1; i >= 0; i--) {
-      var el = null;
-      // var type = /(\.js|\.css)/.exec(deps[i])[0].replace('.', '').toLowerCase();
-      var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
+      var el, type = deps[i].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
       switch(type) {
         case 'js':
           el = document.createElement('script');
