@@ -9,14 +9,12 @@
 (function() {'use strict';
   var dope = function(deps, callback, delay, decay) {
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
-    var list = [];
-    var queue = null;
+    var list = [], queue;
     // typeof (deps) === 'string' ? deps = [deps] : deps = deps;
     // deps instanceof Array ? deps = deps : deps = [deps];
     // deps.constructor === String ? deps = [deps] : deps = deps;
     (deps && deps.constructor !== Array && (deps = [deps]), deps.reverse());
-    // fastest
-    for (var i = queue = deps.length; i--;) {
+    for (var i = queue = deps.length - 1; i >= 0; i--) {
       var el = null;
       // var type = /(\.js|\.css)/.exec(deps[i])[0].replace('.', '').toLowerCase();
       var type = deps[i].substr(deps[i].lastIndexOf('.') + 1).toLowerCase();
@@ -51,7 +49,7 @@
       list.push(head.appendChild(el));
     }
     var waste = function() {
-      for (var i = list.length; i--;) {
+      for (var i = list.length - 1; i >= 0; i--) {
         head.removeChild(list[i]);
         delete list[i];
       }
@@ -68,4 +66,4 @@
     };
   };
   window.dope = dope;
-}).call(window);
+})();
