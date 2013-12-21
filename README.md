@@ -15,7 +15,7 @@ if (document.all && document.documentMode && /ie\s[1-8]\./gi.test(navigator.user
   });
 }
 
-if (/^.*(urn$)/gi.test(window.location.href)) {
+if (/^.*(urn)$/gi.test(window.location.href)) {
   dope('//somewhe.re/assets/js/app.min.js', function(ev) {
     console.log('WOOP!');
   }, 100, 500);
