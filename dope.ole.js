@@ -10,8 +10,8 @@
   var dope = function(deps, callback, delay, decay) {
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var list = [], queue;
-    (deps && deps.constructor !== Array && (deps = [deps]), deps.reverse());
-    for (var i = queue = deps.length - 1; i >= 0; i--) {
+    (deps && deps.constructor !== Array && (deps = [deps]));
+    for (var i = 0, queue = deps.length; i < queue; i++) {
       var el, type = deps[i].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
       switch(type) {
         case 'js':
@@ -44,7 +44,7 @@
       list.push(head.appendChild(el));
     }
     var waste = function() {
-      for (var i = list.length - 1; i >= 0; i--) {
+      for (var i = 0, j = list.length; i < j; i++) {
         head.removeChild(list[i]);
         delete list[i];
       }
