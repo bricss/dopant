@@ -8,7 +8,7 @@ Usage:
 if (document.all && document.documentMode && !window.atob) {
   dope('//somewhe.re/assets/js/augment.min.js', function() {
     console.log('POW!');
-    (document.body.className += ' ' + (document.documentMode && 'ie' + document.documentMode), document.body.className = document.body.className.trim()) || (document.getElementsByTagName('body')[0].className += ' ' + (document.documentMode && 'ie' + document.documentMode), document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.trim());
+    (document.body.className += ' ' + (document.documentMode && 'ie' + document.documentMode), document.body.className = document.body.className.trim());
     dope('//somewhe.re/assets/js/app.min.js', function() {
       console.log('POW!');
     });
