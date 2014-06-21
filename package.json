@@ -1,0 +1,34 @@
+{
+  "author": {
+    "name": "Yehor Sergeenko",
+    "email": "<yehor.sergeenko@gmail.com>",
+    "url": "http://github.com/bricss/"
+  },
+  "dependencies": {
+    "gulp": "*",
+    "gulp-clean": "*",
+    "gulp-concat": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*"
+  },
+  "description": "The aerogel-weight & dead-simple resource loader.",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "keywords": "",
+  "license": "WTFPL",
+  "name": "dope",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bricss/storage.git"
+  },
+  "scripts": {
+    "preinstall": "npm install gulp -g",
+    "postinstall": "npm cache clean",
+    "postupdate": "npm prune",
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
