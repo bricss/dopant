@@ -1,4 +1,4 @@
-Copyright (c) 2013-2014 Yehor Sergeenko <yehor.sergeenko@gmail.com>
+Copyright (c) 2013-2014 Yehor Sergeenko <yehor.sergeenko@gmail.com>.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
