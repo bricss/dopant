@@ -16,7 +16,7 @@
     "node": ">= 0.10"
   },
   "keywords": "",
-  "license": "WTFPL",
+  "license": "BSD",
   "name": "dope",
   "private": false,
   "repository": {
