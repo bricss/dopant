@@ -16,7 +16,7 @@
     "node": ">= 0.10"
   },
   "keywords": "",
-  "license": "BSD",
+  "license": "ISC",
   "name": "dope",
   "private": false,
   "repository": {

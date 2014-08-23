@@ -3,10 +3,11 @@
  * Copyright (c) Yehor Sergeenko <yehor.sergeenko@gmail.com>
  * Version 1.1
  *
- * Dual licensed under the MIT and BSD-2-clause licenses.
+ * Distributed under the ISC license.
  * Examples and documentation at: https://github.com/bricss/dope
  */
-(function() {'use strict';
+(function() {
+  'use strict';
   var dope = function(deps, callback, delay, decay) {
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var list = [], queue;
@@ -14,19 +15,19 @@
     for (var i = 0, queue = deps.length; i < queue; i++) {
       var el, type = deps[i].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
       switch(type) {
-        case 'js':
-          el = document.createElement('script');
-          el.async = (queue && queue.lenght === 1);
-          el.src = deps[i];
-          break;
-        case 'css':
-          el = document.createElement('link');
-          el.href = deps[i];
-          el.rel = 'stylesheet';
-          break;
-        default:
-          console.warn('Something went wrong:', deps[i]);
-          throw 'Unsupported type';
+      case 'js':
+        el = document.createElement('script');
+        el.async = (queue && queue.lenght === 1);
+        el.src = deps[i];
+        break;
+      case 'css':
+        el = document.createElement('link');
+        el.href = deps[i];
+        el.rel = 'stylesheet';
+        break;
+      default:
+        console.warn('Something went wrong:', deps[i]);
+        throw 'Unsupported type';
       }
       if (callback && typeof (callback) === 'function') {
         el.onload = el.onreadystatechange = function(ev) {
@@ -43,7 +44,7 @@
       };
       list.push(head.appendChild(el));
     }
-    var waste = function() {
+    var purge = function() {
       for (var i = 0, j = list.length; i < j; i++) {
         head.removeChild(list[i]);
         delete list[i];
@@ -52,7 +53,7 @@
     if (decay) {
       setTimeout(function() {
         if (!queue || queue > 0) {
-          waste();
+          purge();
         }
       }, decay);
     }
