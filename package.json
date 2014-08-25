@@ -1,9 +1,13 @@
 {
   "author": {
     "name": "Yehor Sergeenko",
-    "email": "<yehor.sergeenko@gmail.com>",
-    "url": "http://github.com/bricss/"
+    "email": "yehor.sergeenko@gmail.com",
+    "url": "http://github.com/bricss"
   },
+  "bugs": {
+    "url": "https://github.com/bricss/dope/issues"
+  },
+  "contributors": [],
   "dependencies": {
     "gulp": "*",
     "gulp-clean": "*",
@@ -15,13 +19,14 @@
   "engines": {
     "node": ">= 0.10.x"
   },
-  "keywords": "",
+  "homepage": "https://github.com/bricss/dope",
+  "keywords": [],
   "license": "ISC",
   "name": "dope",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/bricss/storage.git"
+    "url": "https://github.com/bricss/dope.git"
   },
   "scripts": {
     "preinstall": "npm install gulp -g",
