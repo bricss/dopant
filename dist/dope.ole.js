@@ -1,7 +1,7 @@
 /*!
  * Dope.js - The aerogel-weight & dead-simple resource loader.
  * Copyright (c) Yehor Sergeenko <yehor.sergeenko@gmail.com>
- * Version 1.1
+ * Version 1.1.1
  *
  * Distributed under the ISC license.
  * Examples and documentation at: https://github.com/bricss/dope
@@ -13,7 +13,7 @@
     var list = [], queue;
     (deps && deps.constructor !== Array && (deps = [deps]));
     for (var i = 0, queue = deps.length; i < queue; i++) {
-      var el, type = deps[i].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
+      var el, type = deps[i].split('?')[0].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
       switch(type) {
       case 'js':
         el = document.createElement('script');

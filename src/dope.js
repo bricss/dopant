@@ -1,7 +1,7 @@
 /*!
  * Dope.js - The aerogel-weight & dead-simple resource loader.
  * Copyright (c) Yehor Sergeenko <yehor.sergeenko@gmail.com>
- * Version 1.1
+ * Version 1.1.1
  *
  * Distributed under the ISC license.
  * Examples and documentation at: https://github.com/bricss/dope
