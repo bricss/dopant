@@ -13,7 +13,7 @@
     var list = [], queue;
     (deps && deps.constructor !== Array && (deps = [deps]), deps.reverse());
     for (var i = queue = deps.length - 1; i >= 0; i--) {
-      var el, type = deps[i].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
+      var el, type = deps[i].split('?')[0].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
       switch(type) {
       case 'js':
         el = document.createElement('script');
