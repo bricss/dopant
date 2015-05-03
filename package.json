@@ -17,8 +17,8 @@
   },
   "description": "The aerogel-weight & dead-simple resource loader.",
   "engines": {
-    "io": ">= 1.8.x",
-    "node": ">= 0.12.x"
+    "iojs": ">=1.8.x",
+    "node": ">=0.12.x"
   },
   "homepage": "https://github.com/bricss/dope",
   "keywords": [],
