@@ -10,14 +10,15 @@
   "contributors": [],
   "dependencies": {
     "gulp": "*",
-    "gulp-clean": "*",
     "gulp-concat": "*",
     "gulp-rename": "*",
+    "gulp-rimraf": "*",
     "gulp-uglify": "*"
   },
   "description": "The aerogel-weight & dead-simple resource loader.",
   "engines": {
-    "node": ">= 0.10.x"
+    "io": ">= 1.8.x",
+    "node": ">= 0.12.x"
   },
   "homepage": "https://github.com/bricss/dope",
   "keywords": [],
