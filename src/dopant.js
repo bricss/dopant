@@ -1,5 +1,5 @@
 /*!
- * Dope.js - The aerogel-weight & dead-simple resource loader.
+ * Dopant.js - The aerogel-weight & dead-simple resource loader.
  * Copyright (c) Yehor Sergeenko <yehor.sergeenko@gmail.com>
  * Version 1.2.0
  *
