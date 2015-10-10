@@ -19,7 +19,7 @@
   'use strict';
   var dope = function(deps, callback, delay) {
     if (!deps) {
-      throw 'Pass a required arguments';
+      throw 'Missing arguments';
     }
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var delay = delay || 0;
