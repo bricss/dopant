@@ -1,23 +1,35 @@
 /*!
  * Dope.js - The aerogel-weight & dead-simple resource loader.
  * Copyright (c) Yehor Sergeenko <yehor.sergeenko@gmail.com>
- * Version 1.1.1
+ * Version 1.2.0
  *
  * Distributed under the ISC license.
  * Examples and documentation at: https://github.com/bricss/dope
  */
-(function() {
+(function(root, factory) {
   'use strict';
-  var dope = function(deps, callback, delay, decay) {
+  if (typeof define === 'function' && define.amd) {
+    define(['exports'], factory);
+  } else if (typeof exports === 'object' && typeof module === 'object') {
+    factory(module.exports);
+  } else {
+    factory(root);
+  }
+})(this, function(exports) {
+  'use strict';
+  var dope = function(deps, callback, delay) {
+    if (!deps) {
+      throw 'Pass a required arguments';
+    }
     var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
-    var list = [], queue;
-    (deps && deps.constructor !== Array && (deps = [deps]), deps.reverse());
-    for (var i = queue = deps.length - 1; i >= 0; i--) {
-      var el, type = deps[i].split('?')[0].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
-      switch(type) {
+    var delay = delay || 0;
+    (deps && deps.constructor !== Array && (deps = [deps]));
+    for (var i = 0, j = deps.length; i < j; i++) {
+      var el, extname = deps[i].split('?')[0].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
+      switch(extname) {
       case 'js':
         el = document.createElement('script');
-        el.async = (queue && queue.lenght === 1);
+        el.async = true;
         el.src = deps[i];
         break;
       case 'css':
@@ -26,40 +38,25 @@
         el.rel = 'stylesheet';
         break;
       default:
-        console.warn('Something went wrong:', deps[i]);
-        throw 'Unsupported type';
+        console.warn('Unsupported extension:', deps[i]);
       }
-      if (callback && typeof (callback) === 'function') {
+      if (typeof callback === 'function') {
         el.onload = el.onreadystatechange = function(ev) {
           if (ev && ev.type === 'load' || /loaded|complete/.test(this.readyState)) {
             this.onload = this.onreadystatechange = null;
-            (!--queue) && setTimeout(function() {
-              callback();
-            }, delay);
+            setTimeout(callback, delay);
           }
         };
       }
       el.onerror = function(ev) {
         console.warn('Target is not defined:', ev.target);
+        head.removeChild(el);
       };
-      list.push(head.appendChild(el));
-    }
-    var purge = function() {
-      for (var i = list.length - 1; i >= 0; i--) {
-        head.removeChild(list[i]);
-        delete list[i];
-      }
-    };
-    if (decay) {
-      setTimeout(function() {
-        if (!queue || queue > 0) {
-          purge();
-        }
-      }, decay);
+      head.appendChild(el);
     }
     return {
       dope : dope
     };
   };
-  window.dope = dope;
-})();
+  exports.dope = dope;
+});

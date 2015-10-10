@@ -18,7 +18,7 @@ if (document.all && document.documentMode && !window.atob) {
 if (/^.*(urn)$/gi.test(window.location.href)) {
   dope('//somewhe.re/assets/js/app.min.js', function() {
     console.log('POW!');
-  }, 100, 500);
+  }, 1000);
 }
 
 dope(['//somewhe.re/assets/css/layout.min.css', '//somewhe.re/assets/js/com.min.js', '//somewhe.re/assets/js/app.min.js'], function() {
