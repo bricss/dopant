@@ -5,7 +5,7 @@
     "url": "http://github.com/bricss"
   },
   "bugs": {
-    "url": "https://github.com/bricss/dope/issues"
+    "url": "https://github.com/bricss/dopant/issues"
   },
   "contributors": [],
   "dependencies": {
@@ -19,14 +19,14 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "homepage": "https://github.com/bricss/dope",
+  "homepage": "https://github.com/bricss/dopant",
   "keywords": [],
   "license": "ISC",
-  "name": "dope",
+  "name": "dopant",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/bricss/dope.git"
+    "url": "https://github.com/bricss/dopant.git"
   },
   "scripts": {
     "preinstall": "npm install gulp -g",

@@ -4,7 +4,7 @@
  * Version 1.2.0
  *
  * Distributed under the ISC license.
- * Examples and documentation at: https://github.com/bricss/dope
+ * Examples and documentation at: https://github.com/bricss/dopant
  */
 (function(root, factory) {
   'use strict';
@@ -17,7 +17,7 @@
   }
 })(this, function(exports) {
   'use strict';
-  var dope = function(deps, callback, delay) {
+  var dopant = function(deps, callback, delay) {
     if (!deps) {
       throw 'Missing arguments';
     }
@@ -55,8 +55,8 @@
       head.appendChild(el);
     }
     return {
-      dope : dope
+      dopant : dopant
     };
   };
-  exports.dope = dope;
+  exports.dopant = dopant;
 });
