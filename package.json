@@ -20,8 +20,9 @@
     "node": ">=4.0.0"
   },
   "homepage": "https://github.com/bricss/dopant",
-  "keywords": [],
+  "keywords": ["loader", "resource"],
   "license": "ISC",
+  "main": "src/dopant.js",
   "name": "dopant",
   "private": false,
   "repository": {

@@ -21,8 +21,8 @@
     if (!deps) {
       throw 'Missing arguments';
     }
-    var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     var delay = delay || 0;
+    var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
     (deps && deps.constructor !== Array && (deps = [deps]));
     for (var i = 0, j = deps.length; i < j; i++) {
       var el, extname = deps[i].split('?')[0].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
