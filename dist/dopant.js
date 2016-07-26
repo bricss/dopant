@@ -1,62 +1,58 @@
+'use strict';
+
 /*!
  * Dopant.js - The aerogel-weight & dead-simple resource loader.
  * Copyright (c) Yehor Sergeenko <yehor.sergeenko@gmail.com>
- * Version 1.2.0
+ * Version 1.3.0
  *
  * Distributed under the ISC license.
  * Examples and documentation at: https://github.com/bricss/dopant
  */
-(function(root, factory) {
-  'use strict';
-  if (typeof define === 'function' && define.amd) {
+(function (root, factory) {
+  if (root.define && root.define.constructor === Function && root.define.amd) {
     define(['exports'], factory);
-  } else if (typeof module === 'object' && typeof module.exports === 'object') {
-    factory(module.exports);
+  } else if (root.module && root.module.constructor === Object && root.module.exports) {
+    factory(root.module.exports);
   } else {
     factory(root);
   }
-})(this, function(exports) {
-  'use strict';
-  var dopant = function(deps, callback, delay) {
+})(self, function (exports) {
+  exports.dopant = function (deps) {
     if (!deps) {
-      throw 'Missing arguments';
+      throw new Error('Missing arguments');
+    } else {
+      deps = Array.isArray(deps) ? deps : [deps];
     }
-    var delay = delay || 0;
-    var head = document.documentElement && document.documentElement.firstChild || document.getElementsByTagName('head')[0];
-    (deps && deps.constructor !== Array && (deps = [deps]));
-    for (var i = 0, j = deps.length; i < j; i++) {
-      var el, extname = deps[i].split('?')[0].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
-      switch(extname) {
-      case 'js':
+    var head = document.head;
+
+    var _loop = function _loop(i, j) {
+      var el = void 0,
+          ext = deps[i].split('?')[0].substr((~-deps[i].lastIndexOf('.') >>> 0) + 2).toLowerCase();
+      if (ext === 'js') {
         el = document.createElement('script');
         el.async = true;
         el.src = deps[i];
-        break;
-      case 'css':
+      } else if (ext === 'css') {
         el = document.createElement('link');
         el.href = deps[i];
         el.rel = 'stylesheet';
-        break;
-      default:
-        console.warn('Unsupported extension:', deps[i]);
+      } else {
+        console.warn('Unsupported file type or extension:', deps[i]);
       }
-      if (typeof callback === 'function') {
-        el.onload = el.onreadystatechange = function(ev) {
-          if (ev && ev.type === 'load' || /loaded|complete/.test(this.readyState)) {
-            this.onload = this.onreadystatechange = null;
-            setTimeout(callback, delay);
-          }
+      deps[i] = new Promise(function (resolve, reject) {
+        el.onload = function (ev) {
+          resolve(ev.target.onload = undefined, ev);
         };
-      }
-      el.onerror = function(ev) {
-        console.warn('Target is not defined:', ev.target);
-        head.removeChild(el);
-      };
+        el.onerror = function (ev) {
+          reject(head.removeChild(ev.target), ev);
+        };
+      });
       head.appendChild(el);
-    }
-    return {
-      dopant : dopant
     };
+
+    for (var i = 0, j = deps.length - 1; i <= j; i++) {
+      _loop(i, j);
+    }
+    return Promise.all(deps);
   };
-  exports.dopant = dopant;
 });
