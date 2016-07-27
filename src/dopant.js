@@ -14,7 +14,7 @@
   } else {
     factory(root);
   }
-})(self, (exports) => {
+})((0, eval)('this'), (exports) => {
   exports.dopant = (deps) => {
     if (!deps) {
       throw new Error('Missing arguments');

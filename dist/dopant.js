@@ -16,7 +16,7 @@
   } else {
     factory(root);
   }
-})(self, function (exports) {
+})((0, eval)('this'), function (exports) {
   exports.dopant = function (deps) {
     if (!deps) {
       throw new Error('Missing arguments');
