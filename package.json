@@ -22,8 +22,8 @@
     "node": ">=14.13.0"
   },
   "exports": {
-    "import": "./src/dopant.mjs",
-    "require": "./dist/dopant.js"
+    "import": "./src/index.mjs",
+    "require": "./dist/index.js"
   },
   "files": [
     "dist",
@@ -36,7 +36,7 @@
     "resource"
   ],
   "license": "MIT",
-  "main": "dist/dopant.js",
+  "main": "./dist/index.js",
   "name": "dopant",
   "repository": {
     "type": "git",
@@ -44,9 +44,9 @@
   },
   "scripts": {
     "build": "npx babel src -d dist",
-    "lint": "eslint ./src --ext .cjs,.js,.mjs",
+    "lint": "eslint src --ext .cjs,.js,.mjs",
     "prepack": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "2.0.0"
+  "version": "2.0.1"
 }

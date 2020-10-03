@@ -12,16 +12,14 @@ npm install dopant --save
 
 ### Usage
 ```javascript
-dopant('//somewhe.re/assets/js/augment.js')
-  .then(dopant.bind(null, '//somewhe.re/assets/js/main.js'))
-  .then(function() {
-    console.log('POW!');
-  });
+import dopant from 'dopant';
+
+dopant('//somewhe.re/assets/js/lib.js')
+  .then(() => dopant('//somewhe.re/assets/js/app.js'))
+  .finally(() => console.log('pow!'));
 
 dopant([
   '//somewhe.re/assets/css/layout.css',
-  '//somewhe.re/assets/js/main.js'
-  ]).then(function() {
-    console.log('POW!');
-});
+  '//somewhe.re/assets/js/app.js',
+  ]).finally(() => console.log('pow!'));
 ```
