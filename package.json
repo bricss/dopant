@@ -7,38 +7,46 @@
   "bugs": {
     "url": "https://github.com/bricss/dopant/issues"
   },
-  "contributors": [],
-  "dependencies": {
-    "babel-preset-es2015": "*",
-    "babel-preset-es2016": "*",
-    "gulp": "*",
-    "gulp-babel": "*",
-    "gulp-rename": "*",
-    "gulp-uglify": "*"
+  "description": "The aerogel-weight & dead-simple resource loader 🚚",
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/eslint-parser": "^7.11.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "eslint": "^7.10.0",
+    "eslint-config-ultra-refined": "^1.0.27"
   },
-  "description": "The aerogel-weight & dead-simple resource loader.",
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=14.13.0"
   },
-  "homepage": "https://github.com/bricss/dopant",
+  "exports": {
+    "import": "./src/dopant.mjs",
+    "require": "./dist/dopant.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "homepage": "https://github.com/bricss/dopant#readme",
   "keywords": [
+    "lightweight",
     "loader",
     "resource"
   ],
-  "license": "ISC",
-  "main": "src/dopant.js",
+  "license": "MIT",
+  "main": "dist/dopant.js",
   "name": "dopant",
-  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/bricss/dopant.git"
   },
   "scripts": {
-    "preinstall": "npm install gulp -g",
-    "postinstall": "npm cache clean",
-    "postupdate": "npm prune",
-    "start": "gulp",
+    "build": "npx babel src -d dist",
+    "lint": "eslint ./src --ext .cjs,.js,.mjs",
+    "prepack": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.3.0"
+  "version": "2.0.0"
 }
