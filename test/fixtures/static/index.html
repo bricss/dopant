@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <script type="module">
+      import dopant from '/src/index.mjs';
+
+      dopant([
+        '/assets/css/layout.css?ver=1',
+        '/assets/js/index.cjs?ver=1',
+        '/assets/js/index.mjs?ver=1',
+      ]).then(() => {
+        console.log('pow!');
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

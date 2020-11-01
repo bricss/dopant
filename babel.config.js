@@ -5,23 +5,14 @@ module.exports = function (api) {
   const useESModules = process.env.NODE_ENV === 'test';
 
   return {
-    plugins: [
-      [
-        '@babel/plugin-transform-modules-commonjs',
-        { loose },
-      ],
-      [
-        '@babel/plugin-transform-runtime',
-        { useESModules },
-      ],
-    ],
+    plugins: ['@babel/plugin-syntax-top-level-await'],
     presets: [
       [
         '@babel/preset-env',
         {
           bugfixes: true,
           loose,
-          ...useESModules && { modules: false },
+          ...{ modules: useESModules ? false : 'cjs' },
           shippedProposals: true,
         },
       ],

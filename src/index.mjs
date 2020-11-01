@@ -18,21 +18,27 @@ export default (deps) => {
       el = document.createElement('link');
       el.href = deps[i];
       el.rel = 'stylesheet';
-    } else if (ext === 'js') {
+    } else if (ext.match(/^c?js/)) {
       el = document.createElement('script');
       el.async = true;
       el.src = deps[i];
+    } else if (ext === 'mjs') {
+      el = document.createElement('script');
+      el.async = true;
+      el.src = deps[i];
+      el.type = 'module';
     } else {
-      console.warn('Unsupported file type or extension:', deps[i]);
+      deps[i] = `Unsupported file type or extension: ${ deps[i] }`;
+      console.warn(deps[i]);
     }
 
-    deps[i] = new Promise((resolve, reject) => {
-      el.onload = (ev) => {
-        resolve((ev.target.onload = ev.target.onerror = undefined, ev));
-      };
-
+    deps[i] = el && new Promise((resolve, reject) => {
       el.onerror = (ev) => {
         reject((head.removeChild(ev.target), ev));
+      };
+
+      el.onload = (ev) => {
+        resolve((ev.target.onload = ev.target.onerror = void 0, ev));
       };
 
       head.appendChild(el);

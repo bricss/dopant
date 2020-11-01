@@ -3,7 +3,7 @@ The aerogel-weight & dead-simple resource loader 🚚
 This package provides **lightweight** dynamic resource loader for the web browsers.
 
 ## Prerequisites
-* Node.js `>= 14.13.x`
+* Node.js `>= 14.x`
 
 ## Installation
 ```shell
@@ -14,12 +14,15 @@ npm install dopant --save
 ```javascript
 import dopant from 'dopant';
 
-dopant('//somewhe.re/assets/js/lib.js')
-  .then(() => dopant('//somewhe.re/assets/js/app.js'))
-  .finally(() => console.log('pow!'));
-
 dopant([
   '//somewhe.re/assets/css/layout.css',
-  '//somewhe.re/assets/js/app.js',
-  ]).finally(() => console.log('pow!'));
+  '//somewhe.re/assets/js/main.cjs',
+  ]).then(() => console.log('pow!'));
+
+dopant('//somewhe.re/assets/js/lib.js')
+  .then(() => dopant('//somewhe.re/assets/js/main.js'))
+  .finally(() => console.log('pow!'));
+
+dopant('//somewhe.re/assets/js/index.mjs')
+  .then(() => console.log('pow!'));
 ```
