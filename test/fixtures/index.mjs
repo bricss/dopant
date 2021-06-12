@@ -7,12 +7,12 @@ import { chromium } from 'playwright-chromium';
 import { fileURLToPath } from 'url';
 
 const base = 'static';
+const baseURL = new URL('http://localhost:3000');
 const dirPath = path.dirname(fileURLToPath(import.meta.url));
-const port = 3000;
 
 export async function mochaGlobalSetup() {
   this.server = createServer(async (req, res) => {
-    const pathname = req.url.split('?').shift();
+    const { pathname } = new URL(req.url, baseURL);
     const pathway = pathname.match(/^\/src/)
                     ? path.resolve(process.cwd(), `.${ pathname }`)
                     : path.resolve(dirPath, base, `.${ pathname }`);
@@ -22,23 +22,23 @@ export async function mochaGlobalSetup() {
 
       if (stat.isDirectory() && !pathname.endsWith('/')) {
         res.writeHead(301, {
-          'Location': `${ pathname }/`,
+          'location': `${ pathname }/`,
         });
         res.end();
       } else {
         if (path.extname(pathway).match('js')) {
-          res.setHeader('Content-Type', 'text/javascript');
+          res.setHeader('content-type', 'text/javascript');
         }
 
         createReadStream(pathname.endsWith('/') ? path.resolve(pathway, 'index.html') : pathway).pipe(res);
       }
-    } catch (ex) {
+    } catch {
       res.statusCode = 404;
       res.end();
     }
   });
 
-  await once(this.server.listen(port), 'listening');
+  await once(this.server.listen(baseURL.port), 'listening');
   console.log('server listening on', this.server.address());
 }
 
@@ -50,9 +50,6 @@ export async function mochaGlobalTeardown() {
 export const mochaHooks = {
   async afterAll() {
     await global.browser.close();
-  },
-  async beforeAll() {
-    global.browser = await chromium.launch({ headless: true });
   },
   async afterEach() {
     const origin = await global.page.evaluate('window.location.origin');
@@ -66,7 +63,7 @@ export const mochaHooks = {
         ? process.cwd()
         : path.resolve(dirPath, base)
       }${ pathname.replace(/([#?].*)/, '')
-                  .replaceAll('/', path.sep) }`,
+                  .replace(/\//g, path.sep) }`,
     ));
 
     await fs.mkdir('./coverage/tmp', { recursive: true });
@@ -74,6 +71,9 @@ export const mochaHooks = {
       `./coverage/tmp/coverage-${ Date.now() }-${ idx }.json`,
       JSON.stringify({ result: [it] }),
     )));
+  },
+  async beforeAll() {
+    global.browser = await chromium.launch({ headless: true });
   },
   async beforeEach() {
     global.page = await global.browser.newPage();

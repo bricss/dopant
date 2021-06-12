@@ -45,5 +45,12 @@ export default (deps) => {
     });
   }
 
-  return Promise.all(deps);
+  return Promise.allSettled(deps)
+                .then((results) => results.reduce((acc, val) => {
+                  val.status === 'rejected'
+                  ? console.error(val.reason)
+                  : acc.push(val.value);
+
+                  return acc;
+                }, []));
 };

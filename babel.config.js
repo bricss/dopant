@@ -5,7 +5,7 @@ module.exports = function (api) {
   const useESModules = process.env.NODE_ENV === 'test';
 
   return {
-    plugins: ['@babel/plugin-syntax-top-level-await'],
+    plugins: [],
     presets: [
       [
         '@babel/preset-env',

@@ -2,24 +2,23 @@
   "author": {
     "name": "Yehor Sergeenko",
     "email": "yehor.sergeenko@gmail.com",
-    "url": "http://github.com/bricss"
+    "url": "https://github.com/bricss"
   },
   "bugs": {
     "url": "https://github.com/bricss/dopant/issues"
   },
   "description": "The aerogel-weight & dead-simple resource loader 🚚",
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/eslint-parser": "^7.12.1",
-    "@babel/plugin-syntax-top-level-await": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "c8": "^7.3.5",
-    "eslint": "^7.12.0",
-    "eslint-config-ultra-refined": "^1.0.28",
-    "mocha": "^8.2.0",
-    "playwright-chromium": "^1.5.2"
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "c8": "^7.8.0",
+    "eslint": "^7.32.0",
+    "eslint-config-ultra-refined": "^1.0.35",
+    "mocha": "^9.0.3",
+    "playwright-chromium": "^1.14.0"
   },
   "engines": {
     "node": ">=14.x"
@@ -47,11 +46,11 @@
   },
   "scripts": {
     "build": "rm -rf dist && npx babel src -d dist",
-    "lint": "eslint src --ext .cjs,.js,.mjs",
+    "lint": "eslint . --ext .cjs,.js,.mjs",
     "prepack": "npm run build",
     "pretest": "rm -rf coverage",
-    "test": "mocha --exit",
+    "test": "mocha --exit --recursive",
     "test:cover": "npm test && c8 report --reporter=lcov --reporter=text"
   },
-  "version": "2.0.2"
+  "version": "2.0.3"
 }
