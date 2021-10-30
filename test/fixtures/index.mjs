@@ -2,12 +2,19 @@ import { once } from 'events';
 import { createReadStream } from 'fs';
 import fs from 'fs/promises';
 import { createServer } from 'http';
+import { constants } from 'http2';
 import path from 'path';
 import { chromium } from 'playwright-chromium';
 import { fileURLToPath } from 'url';
 
+const {
+  HTTP2_HEADER_CONTENT_TYPE,
+  HTTP2_HEADER_LOCATION,
+} = constants;
+
 const base = 'static';
 const baseURL = new URL('http://localhost:3000');
+const covPath = './coverage/tmp';
 const dirPath = path.dirname(fileURLToPath(import.meta.url));
 
 export async function mochaGlobalSetup() {
@@ -22,12 +29,12 @@ export async function mochaGlobalSetup() {
 
       if (stat.isDirectory() && !pathname.endsWith('/')) {
         res.writeHead(301, {
-          'location': `${ pathname }/`,
+          [HTTP2_HEADER_LOCATION]: `${ pathname }/`,
         });
         res.end();
       } else {
         if (path.extname(pathway).match('js')) {
-          res.setHeader('content-type', 'text/javascript');
+          res.setHeader(HTTP2_HEADER_CONTENT_TYPE, 'text/javascript');
         }
 
         createReadStream(pathname.endsWith('/') ? path.resolve(pathway, 'index.html') : pathway).pipe(res);
@@ -66,9 +73,9 @@ export const mochaHooks = {
                   .replace(/\//g, path.sep) }`,
     ));
 
-    await fs.mkdir('./coverage/tmp', { recursive: true });
+    await fs.mkdir(covPath, { recursive: true });
     await Promise.all(coverage.map((it, idx) => fs.writeFile(
-      `./coverage/tmp/coverage-${ Date.now() }-${ idx }.json`,
+      `${ covPath }/coverage-${ Date.now() }-${ idx }.json`,
       JSON.stringify({ result: [it] }),
     )));
   },

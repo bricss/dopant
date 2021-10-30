@@ -14,6 +14,7 @@ module.exports = function (api) {
           loose,
           ...{ modules: useESModules ? false : 'cjs' },
           shippedProposals: true,
+          targets: 'defaults',
         },
       ],
     ],
