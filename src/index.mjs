@@ -10,7 +10,7 @@ export default (...args) => {
   for (let i = 0, j = args.length - 1; i <= j; i++) {
     const ext = args[i]
       .split('?')[0]
-      .substr((~-args[i].lastIndexOf('.') >>> 0) + 2)
+      .substring((~-args[i].lastIndexOf('.') >>> 0) + 2)
       .toLowerCase();
     let el;
 

@@ -1,11 +1,10 @@
-import { once } from 'events';
-import { createReadStream } from 'fs';
-import fs from 'fs/promises';
-import { createServer } from 'http';
-import { constants } from 'http2';
-import path from 'path';
+import { once } from 'node:events';
+import fs from 'node:fs/promises';
+import { createServer } from 'node:http';
+import { constants } from 'node:http2';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-chromium';
-import { fileURLToPath } from 'url';
 
 const {
   HTTP2_HEADER_CONTENT_TYPE,
@@ -37,7 +36,9 @@ export async function mochaGlobalSetup() {
           res.setHeader(HTTP2_HEADER_CONTENT_TYPE, 'text/javascript');
         }
 
-        createReadStream(pathname.endsWith('/') ? path.resolve(pathway, 'index.html') : pathway).pipe(res);
+        const fd = await fs.open(pathname.endsWith('/') ? path.resolve(pathway, 'index.html') : pathway);
+
+        fd.createReadStream().pipe(res);
       }
     } catch {
       res.statusCode = 404;

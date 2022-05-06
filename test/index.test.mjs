@@ -1,4 +1,4 @@
-import { strict as assert } from 'assert';
+import { strict as assert } from 'node:assert';
 
 const url = new URL('http://localhost:3000/');
 let page;
