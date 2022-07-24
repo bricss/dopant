@@ -1,5 +1,6 @@
 import { once } from 'node:events';
-import fs from 'node:fs/promises';
+import fs from 'node:fs';
+import fsp from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { constants } from 'node:http2';
 import path from 'node:path';
@@ -17,14 +18,14 @@ const covPath = './coverage/tmp';
 const dirPath = path.dirname(fileURLToPath(import.meta.url));
 
 export async function mochaGlobalSetup() {
-  this.server = createServer(async (req, res) => {
+  this.server = createServer((req, res) => {
     const { pathname } = new URL(req.url, baseURL);
     const pathway = pathname.match(/^\/src/)
                     ? path.resolve(process.cwd(), `.${ pathname }`)
                     : path.resolve(dirPath, base, `.${ pathname }`);
 
     try {
-      const stat = await fs.stat(pathway);
+      const stat = fs.statSync(pathway);
 
       if (stat.isDirectory() && !pathname.endsWith('/')) {
         res.writeHead(301, {
@@ -36,9 +37,7 @@ export async function mochaGlobalSetup() {
           res.setHeader(HTTP2_HEADER_CONTENT_TYPE, 'text/javascript');
         }
 
-        const fd = await fs.open(pathname.endsWith('/') ? path.resolve(pathway, 'index.html') : pathway);
-
-        fd.createReadStream().pipe(res);
+        fs.createReadStream(pathname.endsWith('/') ? path.resolve(pathway, 'index.html') : pathway).pipe(res);
       }
     } catch {
       res.statusCode = 404;
@@ -74,8 +73,8 @@ export const mochaHooks = {
                   .replace(/\//g, path.sep) }`,
     ));
 
-    await fs.mkdir(covPath, { recursive: true });
-    await Promise.all(coverage.map((it, idx) => fs.writeFile(
+    await fsp.mkdir(covPath, { recursive: true });
+    await Promise.all(coverage.map((it, idx) => fsp.writeFile(
       `${ covPath }/coverage-${ Date.now() }-${ idx }.json`,
       JSON.stringify({ result: [it] }),
     )));

@@ -9,15 +9,15 @@
   },
   "description": "The aerogel-weight & dead-simple resource loader 🚚",
   "devDependencies": {
-    "@babel/cli": "^7.17.10",
-    "@babel/core": "^7.17.10",
-    "@babel/eslint-parser": "^7.17.0",
-    "@babel/preset-env": "^7.17.10",
-    "c8": "^7.11.2",
-    "eslint": "^8.14.0",
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "c8": "^7.12.0",
+    "eslint": "^8.23.1",
     "eslint-config-ultra-refined": "^2.5.0",
     "mocha": "^10.0.0",
-    "playwright-chromium": "^1.21.1"
+    "playwright-chromium": "^1.25.2"
   },
   "engines": {
     "node": ">=14.x"

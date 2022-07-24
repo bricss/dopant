@@ -1,8 +1,9 @@
-const loose = true;
+const { engines: { node } } = require('./package');
+const version = Number.parseInt(node.replace(/\p{Symbol}/gu, ''));
 
 module.exports = function (api) {
   api?.cache(false);
-  const useESModules = process.env.NODE_ENV === 'test';
+  const useESModules = /test/i.test(process.env.NODE_ENV);
 
   return {
     plugins: [],
@@ -11,10 +12,10 @@ module.exports = function (api) {
         '@babel/preset-env',
         {
           bugfixes: true,
-          loose,
+          loose: true,
           ...{ modules: useESModules ? false : 'cjs' },
           shippedProposals: true,
-          targets: 'defaults',
+          targets: { node: version },
         },
       ],
     ],
