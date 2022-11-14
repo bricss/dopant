@@ -9,15 +9,15 @@
   },
   "description": "The aerogel-weight & dead-simple resource loader 🚚",
   "devDependencies": {
-    "@babel/cli": "^7.18.10",
-    "@babel/core": "^7.19.1",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
     "@babel/eslint-parser": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
     "c8": "^7.12.0",
-    "eslint": "^8.24.0",
-    "eslint-config-ultra-refined": "^2.6.0",
-    "mocha": "^10.0.0",
-    "playwright-chromium": "^1.26.0"
+    "eslint": "^8.27.0",
+    "eslint-config-ultra-refined": "^2.10.0",
+    "mocha": "^10.1.0",
+    "playwright-chromium": "^1.27.1"
   },
   "engines": {
     "node": ">=14.x"
@@ -37,7 +37,6 @@
     "resource"
   ],
   "license": "MIT",
-  "main": "./dist/index.js",
   "name": "dopant",
   "repository": {
     "type": "git",
@@ -51,5 +50,5 @@
     "test": "mocha --exit --recursive",
     "test:cover": "npm test && c8 report --reporter=lcov --reporter=text"
   },
-  "version": "2.1.4"
+  "version": "2.1.5"
 }
