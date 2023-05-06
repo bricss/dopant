@@ -4,7 +4,7 @@ This package provides **lightweight** dynamic resource loader for the web browse
 
 ## Prerequisites
 
-* Node.js `>= 14.x`
+* Node.js `>= 16.x`
 
 ## Installation
 
