@@ -5,7 +5,7 @@ let page;
 
 describe('dopant', () => {
 
-  beforeEach(() => ({ page } = global));
+  beforeEach(() => ({ page } = globalThis));
 
   it('should load new resource', async () => {
     await page.goto(url.href, { waitUntil: 'load' });

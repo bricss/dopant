@@ -57,11 +57,11 @@ export async function mochaGlobalTeardown() {
 
 export const mochaHooks = {
   async afterAll() {
-    await global.browser.close();
+    await globalThis.browser.close();
   },
   async afterEach() {
-    const origin = await global.page.evaluate('window.location.origin');
-    let coverage = await global.page.coverage.stopJSCoverage();
+    const origin = await globalThis.page.evaluate('window.location.origin');
+    let coverage = await globalThis.page.coverage.stopJSCoverage();
 
     coverage = coverage.filter((it) => it.url.match(/(?<=\/src).*\.[cm]?js/));
     coverage.forEach((it) => it.url = it.url.replace(
@@ -70,7 +70,7 @@ export const mochaHooks = {
         pathname.match(/^\/src/)
         ? process.cwd()
         : path.resolve(dirPath, base)
-      }${ pathname.replace(/([#?].*)/, '')
+      }${ pathname.replace(/[#?].*/, '')
                   .replace(/\//g, path.sep) }`,
     ));
 
@@ -81,10 +81,10 @@ export const mochaHooks = {
     )));
   },
   async beforeAll() {
-    global.browser = await chromium.launch({ headless: true });
+    globalThis.browser = await chromium.launch({ headless: true });
   },
   async beforeEach() {
-    global.page = await global.browser.newPage();
-    await global.page.coverage.startJSCoverage();
+    globalThis.page = await globalThis.browser.newPage();
+    await globalThis.page.coverage.startJSCoverage();
   },
 };
