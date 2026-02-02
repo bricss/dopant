@@ -1,7 +1,7 @@
 {
   "author": {
-    "name": "Yehor Sergeenko",
     "email": "yehor.sergeenko@gmail.com",
+    "name": "Yehor Sergeenko",
     "url": "https://github.com/bricss"
   },
   "bugs": {
@@ -9,22 +9,22 @@
   },
   "description": "The aerogel-weight & dead-simple resource loader 🚚",
   "devDependencies": {
-    "@babel/cli": "^7.28.3",
-    "@babel/core": "^7.28.5",
-    "@babel/eslint-parser": "^7.28.5",
-    "@babel/preset-env": "^7.28.5",
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/eslint-parser": "^7.28.6",
+    "@babel/preset-env": "^7.29.0",
     "c8": "^10.1.3",
     "eslint": "^9.39.2",
-    "eslint-config-ultra-refined": "^3.8.4",
+    "eslint-config-ultra-refined": "^3.8.5",
     "mocha": "^11.7.5",
-    "playwright-chromium": "^1.57.0"
+    "playwright-chromium": "^1.58.1"
   },
   "engines": {
-    "node": ">=20.x"
+    "node": ">=20.0.0"
   },
   "exports": {
-    "import": "./src/index.mjs",
-    "require": "./dist/index.js"
+    "import": "./src/index.js",
+    "require": "./dist/index.cjs"
   },
   "files": [
     "dist",
@@ -43,12 +43,14 @@
     "url": "git+https://github.com/bricss/dopant.git"
   },
   "scripts": {
-    "build": "rm -rf dist && npx babel src -d dist",
-    "lint": "eslint",
-    "prepack": "npm run build",
+    "build": "rm -rf dist && npx babel src --out-dir dist --out-file-extension .cjs",
+    "lint": "eslint --concurrency=auto",
+    "prepack": "npm run build && sh misc.sh && npm run lint",
     "pretest": "rm -rf coverage",
-    "test": "mocha --exit --recursive",
+    "test": "mocha",
+    "test:bail": "mocha --bail",
     "test:cover": "npm test && c8 report --reporter=lcov --reporter=text"
   },
-  "version": "5.0.2"
+  "type": "module",
+  "version": "5.0.4"
 }

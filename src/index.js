@@ -45,12 +45,11 @@ export default (...args) => {
     });
   }
 
-  return Promise.allSettled(args)
-                .then((results) => results.reduce((acc, val) => {
-                  val.status === 'rejected'
-                  ? console.error(val.reason)
-                  : acc.push(val.value);
+  return Promise.allSettled(args).then((results) => results.reduce((acc, val) => {
+    val.status === 'rejected'
+    ? console.error(val.reason)
+    : acc.push(val.value);
 
-                  return acc;
-                }, []));
+    return acc;
+  }, []));
 };

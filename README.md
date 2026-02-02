@@ -1,10 +1,10 @@
 The aerogel-weight & dead-simple resource loader 🚚
 ---
-This package provides **lightweight** dynamic resource loader for the web browsers.
+This package provides a **lightweight** dynamic resource loader for the web browsers.
 
 ## Prerequisites
 
-* Node.js `>= 20.x`
+* Node.js `>= 20.0.0`
 
 ## Installation
 

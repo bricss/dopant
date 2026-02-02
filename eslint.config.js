@@ -8,8 +8,5 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     extends: [ultraRefined],
-    languageOptions: {
-      sourceType: 'script',
-    },
   },
 ]);
