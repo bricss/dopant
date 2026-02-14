@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "main": "./assets/js/main.js"
+  }
+}

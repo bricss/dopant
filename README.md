@@ -1,6 +1,14 @@
 The aerogel-weight & dead-simple resource loader 🚚
 ---
-This package provides a **lightweight** dynamic resource loader for the web browsers.
+This package provides a **lightweight** dynamic resource loader for web browsers.
+
+## Abstract
+
+* Promise-based API ⏳
+* Parallel by default, ordered when required ⚡
+* Supports all `<link>` relations (`preconnect`, `preload`, `stylesheet`, etc.) 🔗
+* Supports all `<script>` types (`importmap`, `module`, `nomodule`, etc.) 📃
+* Zero dependencies 🗽
 
 ## Prerequisites
 
@@ -17,15 +25,36 @@ npm install dopant --save
 ```javascript
 import dopant from 'dopant';
 
-dopant([
-  '//somewhe.re/assets/css/layout.css',
-  '//somewhe.re/assets/js/main.cjs',
-]).then(() => console.log('pow!'));
-
-dopant('//somewhe.re/assets/js/lib.js')
-  .then(() => dopant('//somewhe.re/assets/js/main.js'))
-  .finally(() => console.log('pow!'));
-
-dopant('//somewhe.re/assets/js/index.mjs')
-  .then(() => console.log('pow!'));
+await dopant(
+  '/assets/css/layout.css',
+  '/assets/js/main.js',
+  ['/assets/js/importmap.js', { type: 'importmap' }],
+  ['/assets/js/module.js', { defer: true, type: 'module' }],
+  [
+    '/assets/webfonts/font.woff2',
+    {
+      as: 'font',
+      rel: 'preload',
+      type: 'font/woff2',
+    }
+  ],
+);
 ```
+
+### API
+
+#### `dopant(...resources)`
+
+* `...resources` **{string | [string, attrs]}** Resources w/wo extra attributes to load into the web page
+* **Returns:** Promise that resolves to a list of resolutions
+
+### Behavior
+
+* CSS files default to `rel="stylesheet"`
+* If `rel` is provided, a `<link>` element is created
+* Otherwise, a `<script>` element is created
+* Scripts default to `async: true` (unless overridden or `defer: true` is set)
+
+---
+
+For more details, please check tests in the repository.

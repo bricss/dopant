@@ -3,7 +3,6 @@ import fs from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { constants } from 'node:http2';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-chromium';
 
 const {
@@ -11,17 +10,21 @@ const {
   HTTP2_HEADER_LOCATION,
 } = constants;
 
-const base = 'static';
-const baseURL = new URL('http://localhost:3000');
-const covPath = './coverage/tmp';
-const dirPath = path.dirname(fileURLToPath(import.meta.url));
+const baseURL = new URL('http://localhost:1081');
+const covPath = path.resolve('./coverage/tmp');
+const dirPath = import.meta.dirname;
+const staticDir = 'static';
+
+Object.assign(globalThis, {
+  baseURL,
+});
 
 export async function mochaGlobalSetup() {
   this.server = createServer(async (req, res) => {
     const { pathname } = new URL(req.url, baseURL);
     const pathway = pathname.match(/^\/src/)
                     ? path.resolve(process.cwd(), `.${ pathname }`)
-                    : path.resolve(dirPath, base, `.${ pathname }`);
+                    : path.resolve(dirPath, staticDir, `.${ pathname }`);
 
     try {
       const stat = await fs.stat(pathway);
@@ -33,7 +36,7 @@ export async function mochaGlobalSetup() {
         res.end();
       } else {
         if (path.extname(pathway).match('js')) {
-          res.setHeader(HTTP2_HEADER_CONTENT_TYPE, 'text/javascript');
+          res.setHeader(HTTP2_HEADER_CONTENT_TYPE, 'application/javascript');
         }
 
         const fd = await fs.open(pathname.endsWith('/') ? path.resolve(pathway, 'index.html') : pathway);
@@ -52,7 +55,7 @@ export async function mochaGlobalSetup() {
 
 export async function mochaGlobalTeardown() {
   await once(this.server.close(), 'close');
-  console.log('server has been closed');
+  console.log('server(s) has been closed');
 }
 
 export const mochaHooks = {
@@ -69,7 +72,7 @@ export const mochaHooks = {
       (...[, , , , { pathname }]) => `${
         pathname.match(/^\/src/)
         ? process.cwd()
-        : path.resolve(dirPath, base)
+        : path.resolve(dirPath, staticDir)
       }${ pathname.replace(/[#?].*/, '')
                   .replace(/\//g, path.sep) }`,
     ));
