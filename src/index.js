@@ -14,7 +14,7 @@ export default (...args) => {
         const res = await fetch(url);
 
         if (!res.ok) {
-          throw new Error(`Failed to fetch importmap: ${ url }`);
+          throw new Error(`Failed to fetch ${ attrs.type }: ${ url }`);
         }
 
         el.textContent = await res.text();

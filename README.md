@@ -28,7 +28,7 @@ import dopant from 'dopant';
 await dopant(
   '/assets/css/layout.css',
   '/assets/js/main.js',
-  ['/assets/js/importmap.js', { type: 'importmap' }],
+  ['/assets/js/importmap.json', { type: 'importmap' }],
   ['/assets/js/module.js', { defer: true, type: 'module' }],
   [
     '/assets/webfonts/font.woff2',
