@@ -1,3 +1,4 @@
+import markdown from '@eslint/markdown';
 import ultraRefined from 'eslint-config-ultra-refined';
 import {
   defineConfig,
@@ -6,6 +7,11 @@ import {
 
 export default defineConfig([
   globalIgnores(['dist']),
+  {
+    files: ['**/*.md'],
+    plugins: { markdown },
+    processor: 'markdown/markdown',
+  },
   {
     extends: [ultraRefined],
   },

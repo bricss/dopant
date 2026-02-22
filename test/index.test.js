@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 const url = globalThis.baseURL;
 let page;
 
-describe('dopant', () => {
+describe('given dopant', () => {
 
   beforeEach(() => ({ page } = globalThis));
 
