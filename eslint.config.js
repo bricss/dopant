@@ -7,11 +7,8 @@ import {
 
 export default defineConfig([
   globalIgnores(['dist']),
-  {
-    files: ['**/*.md'],
-    plugins: { markdown },
-    processor: 'markdown/markdown',
-  },
+  markdown.configs.processor,
+  markdown.configs.recommended,
   {
     extends: [ultraRefined],
   },
