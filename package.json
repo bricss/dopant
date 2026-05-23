@@ -11,13 +11,13 @@
   "devDependencies": {
     "@babel/cli": "^7.28.6",
     "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
-    "@eslint/markdown": "^8.0.0",
+    "@babel/preset-env": "^7.29.5",
+    "@eslint/markdown": "^8.0.2",
     "c8": "^11.0.0",
-    "eslint": "^10.1.0",
-    "eslint-config-ultra-refined": "^4.1.5",
-    "mocha": "^11.7.5",
-    "playwright-chromium": "^1.58.2"
+    "eslint": "^10.4.0",
+    "eslint-config-ultra-refined": "^4.1.8",
+    "mocha": "^11.7.6",
+    "playwright-chromium": "^1.60.0"
   },
   "engines": {
     "node": ">=20.0.0"
