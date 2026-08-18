@@ -13,14 +13,14 @@
     "@babel/core": "^8.0.1",
     "@babel/preset-env": "^8.0.2",
     "@eslint/markdown": "^8.0.3",
-    "c8": "^11.0.0",
-    "eslint": "^10.7.0",
-    "eslint-config-ultra-refined": "^4.1.10",
-    "mocha": "^11.7.6",
-    "playwright-chromium": "^1.61.1"
+    "c8": "^12.0.0",
+    "eslint": "^10.8.1",
+    "eslint-config-ultra-refined": "^4.2.1",
+    "mocha": "^11.8.0",
+    "playwright-chromium": "^1.62.1"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "exports": {
     "import": "./src/index.js",
@@ -52,5 +52,5 @@
     "test:cover": "npm test && c8 report --reporter=lcov --reporter=text"
   },
   "type": "module",
-  "version": "6.0.3"
+  "version": "7.0.0"
 }

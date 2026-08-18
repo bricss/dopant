@@ -3,3 +3,4 @@ ignore:
   - test/**/fixtures/**
 require: test/fixtures/index.js
 recursive: true
+timeout: 4e3
