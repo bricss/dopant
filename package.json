@@ -1,4 +1,7 @@
 {
+  "allowScripts": {
+    "playwright-chromium": true
+  },
   "author": {
     "email": "yehor.sergeenko@gmail.com",
     "name": "Yehor Sergeenko",
@@ -14,10 +17,10 @@
     "@babel/preset-env": "^8.0.2",
     "@eslint/markdown": "^8.0.3",
     "c8": "^12.0.0",
-    "eslint": "^10.8.1",
-    "eslint-config-ultra-refined": "^4.2.1",
-    "mocha": "^11.8.0",
-    "playwright-chromium": "^1.62.1"
+    "eslint": "^10.10.0",
+    "eslint-config-ultra-refined": "^4.3.0",
+    "mocha": "^12.0.0",
+    "playwright-chromium": "^1.63.0"
   },
   "engines": {
     "node": ">=22.0.0"
@@ -52,5 +55,5 @@
     "test:cover": "npm test && c8 report --reporter=lcov --reporter=text"
   },
   "type": "module",
-  "version": "7.0.0"
+  "version": "7.0.1"
 }

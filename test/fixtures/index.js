@@ -50,11 +50,13 @@ export async function mochaGlobalSetup() {
   });
 
   await once(this.server.listen(baseURL.port), 'listening');
+
   console.log('server listening on', this.server.address());
 }
 
 export async function mochaGlobalTeardown() {
-  await once(this.server.close(), 'close');
+  await this.server[Symbol.asyncDispose]();
+
   console.log('server(s) has been closed');
 }
 
