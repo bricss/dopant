@@ -12,14 +12,14 @@
   },
   "description": "The aerogel-weight & dead-simple resource loader 🚚",
   "devDependencies": {
-    "@babel/cli": "^8.0.4",
-    "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.2",
+    "@babel/cli": "^8.0.5",
+    "@babel/core": "^8.0.5",
+    "@babel/preset-env": "^8.0.5",
     "@eslint/markdown": "^8.0.3",
     "c8": "^12.0.0",
     "eslint": "^10.10.0",
     "eslint-config-ultra-refined": "^4.3.0",
-    "mocha": "^12.0.0",
+    "mocha": "^12.0.1",
     "playwright-chromium": "^1.63.0"
   },
   "engines": {
